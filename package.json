@@ -1,0 +1,17 @@
+{
+  "name": "chess-deez-nuts",
+  "version": "0.0.1",
+  "description": "A simple chess interface with a machine AI hardcoded with my fellow collaborators",
+  "main": "index.js",
+  "repository": "https://github.com/Ragudos/Chess-Deez-Nuts.git",
+  "author": "Aaron Ragudos <workemailaaronragudos@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": ["www", "algorithm"],
+  "scripts": {
+	"format": "prettier --write [\"www/src/**/*.{ts,js,html}\",\"algorithm/src/**/*.ts\"]",
+	"test": "yarn workspaces foreach --all -pt test",
+	"build": "yarn workspaces foreach --all -pt build",
+	"dev": "yarn workspaces foreach --all -pt dev"
+  }
+}
