@@ -1,0 +1,10 @@
+{
+  "name": "@chess-deez-nuts/core",
+  "version": "0.0.1",
+  "main": "build/index.mjs",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build"
+  }
+}

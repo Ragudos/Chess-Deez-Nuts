@@ -1,0 +1,26 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "curly": "error",
+        "quotes": ["error", "double", { "allowTemplateLiterals": true }],
+        "semi": ["error", "always"],
+        "no-console": "error",
+        "no-debugger": "error",
+        "no-var": "error",
+        "no-unused-vars": ["error", { "varsIgnorePattern": "^_" }],
+        "no-spaced-func": "error",
+        "class-methods-use-this": "error",
+        "no-useless-constructor": "error",
+        "no-empty-function": "error",
+        "no-multiple-empty-lines": ["error", { "max": 1 }],
+        "no-multi-spaces": "error",
+        "no-unneeded-ternary": "error"
+    }
+}

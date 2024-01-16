@@ -7,11 +7,22 @@
   "author": "Aaron Ragudos <workemailaaronragudos@gmail.com>",
   "license": "MIT",
   "private": true,
-  "workspaces": ["www", "algorithm"],
+  "workspaces": [
+    "www",
+    "algorithm",
+    "core"
+  ],
   "scripts": {
-	"format": "prettier --write [\"www/src/**/*.{ts,js,html}\",\"algorithm/src/**/*.ts\"]",
-	"test": "yarn workspaces foreach --all -pt test",
-	"build": "yarn workspaces foreach --all -pt build",
-	"dev": "yarn workspaces foreach --all -pt dev"
+    "format": "prettier --write [\"www/src/**/*.{ts,js,html}\",\"algorithm/src/**/*.ts\"]",
+    "test": "yarn workspaces foreach --all -pt test",
+    "build": "yarn workspaces foreach --all -pt build",
+    "dev": "yarn workspaces foreach --all -pt dev"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.2",
+    "typescript": "^5.3.3"
   }
 }
