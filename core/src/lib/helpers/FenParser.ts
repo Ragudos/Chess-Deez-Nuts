@@ -6,3 +6,5 @@
 class FenParser {
     public static parseFenTxt(fenTxt: string): number[] {}
 }
+
+export default FenParser;
