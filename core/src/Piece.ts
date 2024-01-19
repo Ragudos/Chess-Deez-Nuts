@@ -6,19 +6,19 @@ type PieceColors = typeof Piece.White | typeof Piece.Black;
  */
 class Piece {
     // Piece Symbols
-    protected static readonly NoneSymbol = Symbol(" ");
-    protected static readonly WhitePawnSymbol = Symbol("P");
-    protected static readonly WhiteKnightSymbol = Symbol("N");
-    protected static readonly WhiteBishopSymbol = Symbol("B");
-    protected static readonly WhiteRookSymbol = Symbol("R");
-    protected static readonly WhiteQueenSymbol = Symbol("Q");
-    protected static readonly WhiteKingSymbol = Symbol("K");
-    protected static readonly BlackPawnSymbol = Symbol("p");
-    protected static readonly BlackKnightSymbol = Symbol("n");
-    protected static readonly BlackBishopSymbol = Symbol("b");
-    protected static readonly BlackRookSymbol = Symbol("r");
-    protected static readonly BlackQueenSymbol = Symbol("q");
-    protected static readonly BlackKingSymbol = Symbol("k");
+    public static readonly NoneSymbol = Symbol.for(" ");
+    public static readonly WhitePawnSymbol = Symbol.for("P");
+    public static readonly WhiteKnightSymbol = Symbol.for("N");
+    public static readonly WhiteBishopSymbol = Symbol.for("B");
+    public static readonly WhiteRookSymbol = Symbol.for("R");
+    public static readonly WhiteQueenSymbol = Symbol.for("Q");
+    public static readonly WhiteKingSymbol = Symbol.for("K");
+    public static readonly BlackPawnSymbol = Symbol.for("p");
+    public static readonly BlackKnightSymbol = Symbol.for("n");
+    public static readonly BlackBishopSymbol = Symbol.for("b");
+    public static readonly BlackRookSymbol = Symbol.for("r");
+    public static readonly BlackQueenSymbol = Symbol.for("q");
+    public static readonly BlackKingSymbol = Symbol.for("k");
 
     // Piece Types
     public static readonly None = 0;
@@ -116,6 +116,54 @@ class Piece {
         }
 
         return symbol;
+    }
+
+    public static get_piece_binary_from_symbol(symbol: symbol): number {
+        let piece_type: number;
+
+        switch(symbol) {
+            case Piece.WhitePawnSymbol:
+                piece_type = Piece.WhitePawn;
+                break;
+            case Piece.BlackPawnSymbol:
+                piece_type = Piece.BlackPawn;
+                break;
+            case Piece.WhiteKnightSymbol:
+                piece_type = Piece.WhiteKnight;
+                break;    
+            case Piece.BlackKnightSymbol:
+                piece_type = Piece.BlackKnight;
+                break;
+            case Piece.WhiteBishopSymbol:
+                piece_type = Piece.WhiteBishop;
+                break;
+            case Piece.BlackBishopSymbol:
+                piece_type = Piece.BlackBishop;
+                break;
+            case Piece.WhiteRookSymbol:
+                piece_type = Piece.WhiteRook;
+                break;
+            case Piece.BlackRookSymbol:
+                piece_type = Piece.BlackRook;
+                break;
+            case Piece.WhiteQueenSymbol:
+                piece_type = Piece.WhiteQueen;
+                break;
+            case Piece.BlackQueenSymbol:
+                piece_type = Piece.BlackQueen;
+                break;
+            case Piece.WhiteKingSymbol:
+                piece_type = Piece.WhiteKing;
+                break;
+            case Piece.BlackKingSymbol:
+                piece_type = Piece.BlackKing;
+                break;
+            default:
+                piece_type = Piece.None;
+                break;
+        }
+
+        return piece_type;
     }
 
     public static get_piece_type_from_symbol(symbol: symbol): number {

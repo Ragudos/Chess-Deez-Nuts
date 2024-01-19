@@ -1,6 +1,7 @@
 import Piece, { type PieceColors } from "../../Piece";
 
 type CastlingRights = Record<PieceColors, { [Piece.King]: boolean, [Piece.Queen]: boolean }>;
+type EnPassant = undefined | { x: number, y: number };
 
 type GameStateObject = {
   /**
@@ -35,9 +36,9 @@ type GameStateObject = {
    */
   castling_rights: CastlingRights;
   /**
-   * At which indeces in the 8x8 chess board matrix is there a possible capture for En Passant
+   * At which index in the 8x8 chess board matrix is there a possible capture for En Passant
    */
-  en_passant_indeces: number[][];
+  en_passant_indeces: EnPassant;
   /**
    * How many moves both player made since the last pawn advance or piece capture.
    * If 100 is reached, the game ends in a draw.
@@ -103,7 +104,7 @@ class GameState {
      * @param indeces 
      * @throws Error if the en passant indeces are already set.
      */
-    set_en_passant_indeces(indeces: number[][]): this {
+    set_en_passant_indeces(indeces: EnPassant): this {
       if ("en_passant_indeces" in this._state) {
         throw new Error("En passant indeces already set.");
       }
@@ -168,4 +169,4 @@ class GameState {
     }
 }
 
-export { type GameStateObject, type CastlingRights, GameState };
+export { type GameStateObject, type CastlingRights, type EnPassant, GameState };

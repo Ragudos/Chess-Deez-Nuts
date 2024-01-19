@@ -10,11 +10,12 @@
   "workspaces": [
     "www",
     "algorithm",
-    "core"
+    "core",
+    "__tests__"
   ],
   "scripts": {
-    "format": "prettier --write [\"www/src/**/*.{ts,js,html}\",\"algorithm/src/**/*.ts\"]",
-    "test": "yarn workspaces foreach --all -pt test",
+    "format": "prettier --write [\"www/src/**/*.{ts,js,html}\",\"algorithm/src/**/*.ts\", \"core/src/**/*.ts\", \"__tests__/**/*.ts\"]",
+    "test": "yarn workspace @chess-deez-nuts/__tests__ run test",
     "build": "yarn workspaces foreach --all -pt build",
     "dev": "yarn workspaces foreach --all -pt dev"
   },
