@@ -79,7 +79,7 @@ class FenParser {
             board.push(row);
         }
 
-        return board.reverse();
+        return board;
     }
 
     /**

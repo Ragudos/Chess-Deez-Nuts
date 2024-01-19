@@ -26,7 +26,7 @@ test(`Fen parser properly parses the board of the fen string: ${fen_string}.`, (
                 continue;
             }
 
-            if (y === 0) {
+            if (y === 7) {
                 if (x === 0 || x === 7) {
                     expect(Chess.Piece.get_symbol(piece)).toBe(Chess.Piece.WhiteRookSymbol);
                 }
@@ -46,11 +46,11 @@ test(`Fen parser properly parses the board of the fen string: ${fen_string}.`, (
                 if (x === 4) {
                     expect(Chess.Piece.get_symbol(piece)).toBe(Chess.Piece.WhiteKingSymbol);
                 }
-            } else if (y === 1) {
-                expect(Chess.Piece.get_symbol(piece)).toBe(Chess.Piece.WhitePawnSymbol);
             } else if (y === 6) {
+                expect(Chess.Piece.get_symbol(piece)).toBe(Chess.Piece.WhitePawnSymbol);
+            } else if (y === 1) {
                 expect(Chess.Piece.get_symbol(piece)).toBe(Chess.Piece.BlackPawnSymbol);
-            } else if (y === 7) {
+            } else if (y === 0) {
                 if (x === 0 || x === 7) {
                     expect(Chess.Piece.get_symbol(piece)).toBe(Chess.Piece.BlackRookSymbol);
                 }
