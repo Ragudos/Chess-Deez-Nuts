@@ -1,6 +1,6 @@
-import { Board } from "../../Board";
 import Piece, { PieceColors } from "../../Piece";
-import { type GameStateObject, GameState, CastlingRights, EnPassant } from "./GameState";
+import Constants from "./Constants";
+import { CastlingRights, EnPassant, FullGameStateObject } from "./GameState";
 
 /**
  * A FEN parser.
@@ -8,9 +8,7 @@ import { type GameStateObject, GameState, CastlingRights, EnPassant } from "./Ga
  * This is used to describe a Chess game board/positions of pieces.
  */
 class FenParser {
-    private static _builder: GameState = new GameState();
-
-    public static parse_fen_txt(fen_txt: string): GameStateObject {
+    public static parse_fen_txt(fen_txt: string): FullGameStateObject {
         const fen_parts = fen_txt.split(" ");
         const fen_board = fen_parts[0];
         const fen_active_color = fen_parts[1];
@@ -26,13 +24,31 @@ class FenParser {
         const half_move_clock = FenParser._parse_fen_half_move_clock(fen_half_move_clock);
         const full_move_clock = FenParser._parse_fen_full_move_clock(fen_full_move_clock);
 
-        return FenParser._builder.set_board(board)
-            .set_active_color(active_color)
-            .set_castling_rights(castlingRights)
-            .set_en_passant_indeces(en_passant)
-            .set_half_move_clock(half_move_clock)
-            .set_full_move_clock(full_move_clock)
-            .build();
+        return {
+            board,
+            active_color,
+            castling_rights: castlingRights,
+            en_passant,
+            half_move_clock,
+            full_move_clock,
+            captures: {
+                [Piece.White]: {
+                    [Piece.Pawn]: 0,
+                    [Piece.Knight]: 0,
+                    [Piece.Bishop]: 0,
+                    [Piece.Rook]: 0,
+                    [Piece.Queen]: 0
+                },
+                [Piece.Black]: {
+                    [Piece.Pawn]: 0,
+                    [Piece.Knight]: 0,
+                    [Piece.Bishop]: 0,
+                    [Piece.Rook]: 0,
+                    [Piece.Queen]: 0
+                }
+            },
+            move_history: []
+        };
     }
 
     /**
@@ -121,7 +137,7 @@ class FenParser {
             throw new Error("Invalid en passant.");
         }
 
-        const x = Board.ROW_LETTER_TO_INDEX[fen_en_passant[0]];
+        const x = Constants.ROW_LETTER_TO_INDEX[fen_en_passant[0]];
         const unparsed_y = fen_en_passant[1];
 
         if (x === undefined || unparsed_y === undefined) {

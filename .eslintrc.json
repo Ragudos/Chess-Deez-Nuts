@@ -1,7 +1,6 @@
 {
     "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended"
+        "eslint:recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "plugins": [
@@ -14,7 +13,7 @@
         "no-console": "error",
         "no-debugger": "error",
         "no-var": "error",
-        "no-unused-vars": ["error", { "varsIgnorePattern": "^_" }],
+        "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
         "no-spaced-func": "error",
         "class-methods-use-this": "error",
         "no-useless-constructor": "error",

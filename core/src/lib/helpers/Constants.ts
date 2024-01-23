@@ -1,18 +1,16 @@
-export type PieceMap = {
-    None: 0;
-    Pawn: 1;
-    Knight: 2;
-    Bishop: 3;
-    Rook: 4;
-    Queen: 5;
-    King: 6;
-}
-
-/**
- * Constants used for the program.
- */
 class Constants {
-    
+    public static readonly BOARD_SIZE = 8;
+    public static readonly ROW_LETTER_TO_INDEX = {
+        a: 0,
+        b: 1,
+        c: 2,
+        d: 3,
+        e: 4,
+        f: 5,
+        g: 6,
+        h: 7
+    } as const;
+    public static AMOUNT_OF_PIECES = 6;
 }
 
 export default Constants;

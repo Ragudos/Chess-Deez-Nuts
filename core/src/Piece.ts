@@ -1,4 +1,5 @@
 type PieceColors = typeof Piece.White | typeof Piece.Black;
+type PieceTypes = typeof Piece.Pawn | typeof Piece.Knight | typeof Piece.Bishop | typeof Piece.Rook | typeof Piece.Queen | typeof Piece.King;
 
 /**
  * A chess piece. We use a binary representation of the pieces on a chess board
@@ -28,6 +29,17 @@ class Piece {
     public static readonly Rook = 4;
     public static readonly Queen = 5;
     public static readonly King = 6;
+    
+    // Array of piece types
+    public static readonly PieceTypes = [
+        Piece.None,
+        Piece.Pawn,
+        Piece.Knight,
+        Piece.Bishop,
+        Piece.Rook,
+        Piece.Queen,
+        Piece.King
+    ];
 
     // Colors
     public static readonly White = 0;
@@ -218,5 +230,5 @@ class Piece {
     }
 }
 
-export { type PieceColors };
+export { type PieceColors, type PieceTypes };
 export default Piece;

@@ -1,17 +1,31 @@
 import Chess from "../../core/build";
 
-const fen_string = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b - - 0 0";
+const fen_string_base = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b - - 0 0";
 
-test(`Fen parser properly parses the board of the fen string: ${fen_string}.`, () => {
+test(`Fen parser properly parses the default state: ${fen_string_base}.`, () => {
     const FenParser = Chess.FenParser;
 
-    const parsed_fen_string = FenParser.parse_fen_txt(fen_string);
+    const parsed_fen_string = FenParser.parse_fen_txt(fen_string_base);
+    const castling_rights = parsed_fen_string.castling_rights;
+    const en_passant = parsed_fen_string.en_passant;
     const board = parsed_fen_string.board;
+
+    expect(castling_rights[0][5]).toBeFalsy();
+    expect(castling_rights[0][6]).toBeFalsy();
+    expect(castling_rights[1][5]).toBeFalsy();
+    expect(castling_rights[1][6]).toBeFalsy();
+    
+    expect(en_passant).toBeUndefined();
+
+    expect(parsed_fen_string.full_move_clock).toBe(0);
+    expect(parsed_fen_string.half_move_clock).toBe(0);
 
     expect(board.length).toBe(8);
     
     for (let y = 0; y < board.length; ++y) {
         const row = board[y];
+
+        expect(row).not.toBeUndefined();
 
         if (!row) {
             continue;

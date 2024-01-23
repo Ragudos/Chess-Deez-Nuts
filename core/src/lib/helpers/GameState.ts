@@ -2,6 +2,7 @@ import Piece, { type PieceColors } from "../../Piece";
 
 type CastlingRights = Record<PieceColors, { [Piece.King]: boolean, [Piece.Queen]: boolean }>;
 type EnPassant = undefined | { x: number, y: number };
+type Captures = Record<PieceColors, Record<1 | 2 | 3 | 4 | 5, number>>;
 
 type GameStateObject = {
   /**
@@ -38,7 +39,7 @@ type GameStateObject = {
   /**
    * At which index in the 8x8 chess board matrix is there a possible capture for En Passant
    */
-  en_passant_indeces: EnPassant;
+  en_passant: EnPassant;
   /**
    * How many moves both player made since the last pawn advance or piece capture.
    * If 100 is reached, the game ends in a draw.
@@ -49,124 +50,24 @@ type GameStateObject = {
    * Incremented when black makes a move.
    */
   full_move_clock: number;
-
   /**
    * The board matrix filled with binary representations of each piece.
    */
   board: number[][];
 };
 
-// TODO: Implement the board to record the current placements on the board
-class GameState {
-    private _state: Partial<GameStateObject>;
+type FullGameStateObject = GameStateObject & {
+  /**
+   * The captures made by both white and black. These contains the binary representations of the pieces as the key and an integer of how many
+   * of its kind was captured. {@link Captures}
+   */
+  captures: Captures; 
 
-    set_board(board: number[][]): this {
-      if ("board" in this._state) {
-        throw new Error("Board already set.");
-      }
+  /**
+   * The history of moves made in the game.
+   * A string of chess notations.
+   */
+  move_history: string[];
+};
 
-      this._state.board = board;
-
-      return this;
-    }
-
-    /**
-     * @param color 
-     * @throws Error if the active color is already set.
-     */
-    set_active_color(color: PieceColors): this {
-      if ("active_color" in this._state) {
-        throw new Error("Active color already set.");
-      }
-
-      this._state.active_color = color;
-  
-      return this;
-    }
-
-    /**
-     * @param castling_rights
-     * @throws Error if the castling rights are already set.
-     */
-    set_castling_rights(castling_rights: CastlingRights): this {
-      if ("castling_rights" in this._state) {
-        if (this._state.castling_rights[0] && this._state.castling_rights[1]) {
-          throw new Error("Castling rights already set.");
-        }
-      }
-
-      this._state.castling_rights = castling_rights;
-    
-      return this;
-    }
-
-    /**
-     * @param indeces 
-     * @throws Error if the en passant indeces are already set.
-     */
-    set_en_passant_indeces(indeces: EnPassant): this {
-      if ("en_passant_indeces" in this._state) {
-        throw new Error("En passant indeces already set.");
-      }
-
-      this._state.en_passant_indeces = indeces;
-
-      return this;
-    }
-
-    /**
-     * @param clock 
-     * @throws Error if the half move clock is already set.
-     */
-    set_half_move_clock(clock: number): this {
-      if ("half_move_clock" in this._state) {
-        throw new Error("Half move clock already set.");
-      }
-
-      this._state.half_move_clock = clock;
-
-      return this;
-    }
-
-    /**
-     * @param clock 
-     * @throws Error if the full move clock is already set.
-     */
-    set_full_move_clock(clock: number): this {
-      if ("full_move_clock" in this._state) {
-        throw new Error("Full move clock already set.");
-      }
-
-      this._state.full_move_clock = clock;
-
-      return this;
-    }
-
-    /**
-     * @returns The built {@link GameStateObject}
-     * @throws Error if the {@link GameStateObject} is not fully built.
-     */
-    build(): GameStateObject {
-      if (
-        !("active_color" in this._state) &&
-        !("castling_rights" in this._state) &&
-        !("en_passant_indeces" in this._state) &&
-        !("half_move_clock" in this._state) &&
-        !("full_move_clock" in this._state)
-      ) {
-        throw new Error("GameState is not fully built.");
-      }
-
-      const tmp = this._state as GameStateObject;
-
-      this._state = {};
-
-      return tmp;
-    }
-
-    constructor() {
-      this._state = {};
-    }
-}
-
-export { type GameStateObject, type CastlingRights, type EnPassant, GameState };
+export { type GameStateObject, type CastlingRights, type EnPassant, type FullGameStateObject };
