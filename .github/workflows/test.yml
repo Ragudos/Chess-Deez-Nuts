@@ -3,13 +3,9 @@ on:
     push:
         branches:
             - main
-        paths-ignore:
-            - "__tests__/**"
     pull_request:
         branches:
             - main
-        paths-ignore:
-            - "__tests__/**"
 jobs:
     build:
         runs-on: ubuntu-latest
