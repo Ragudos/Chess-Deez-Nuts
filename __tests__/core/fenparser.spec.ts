@@ -1,4 +1,5 @@
-import Chess from "../../core/build";
+/* eslint-disable no-undef */
+import Chess from "../../core";
 
 const fen_string_base = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b - - 0 0";
 
@@ -12,8 +13,8 @@ test(`Fen parser properly parses the default state: ${fen_string_base}.`, () => 
 
     expect(castling_rights[0][5]).toBeFalsy();
     expect(castling_rights[0][6]).toBeFalsy();
-    expect(castling_rights[1][5]).toBeFalsy();
-    expect(castling_rights[1][6]).toBeFalsy();
+    expect(castling_rights[8][5]).toBeFalsy();
+    expect(castling_rights[8][6]).toBeFalsy();
     
     expect(en_passant).toBeUndefined();
 
