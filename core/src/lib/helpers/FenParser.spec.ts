@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import Chess from "../../core";
+import Chess from "../..";
 
 const fen_string_base = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b - - 0 0";
 
